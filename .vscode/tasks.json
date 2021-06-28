@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Copy",
+      "type": "shell",
+      "command": "cp",
+      "args": [
+        {
+          "value": "${workspaceFolder}\\target\\SMPImprovements-0.0.1-SNAPSHOT.jar"
+        },
+        "C:/Users/Jonat/Desktop/test server - 1.17/plugins/plugin.jar"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "Build"
+    },
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "mvn",
+      "args": [
+        "package",
+        "-f",
+        "c:/Users/Jonat/Desktop/Java/SMPImprovements/pom.xml"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "group": "build"
+    }
+  ]
+}

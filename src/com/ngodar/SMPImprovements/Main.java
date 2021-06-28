@@ -1,8 +1,5 @@
 package com.ngodar.SMPImprovements;
 
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import com.comphenix.protocol.ProtocolManager;
 import com.ngodar.SMPImprovements.BaneOfGustaf.BaneOfGustafListener;
 import com.ngodar.SMPImprovements.BaneOfGustaf.BaneOfGustafRecipe;
@@ -11,43 +8,55 @@ import com.ngodar.SMPImprovements.PickPocket.PickPocketListener;
 import com.ngodar.SMPImprovements.PickPocket.PickPocketRecipe;
 import com.ngodar.SMPImprovements.PickupStick.PickupStickListener;
 import com.ngodar.SMPImprovements.PickupStick.PickupStickRecipie;
+import com.ngodar.SMPImprovements.Strawberry.StrawberryListener;
+import com.ngodar.SMPImprovements.Strawberry.StrawberryRecipe;
+
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
 	static Main instance;
-	
+
 	static ProtocolManager manager;
-	
+
 	@Override
-	public void onEnable() {	
+	public void onEnable() {
 		instance = this;
-		
+
 		GlobalKeys.setSingletonIfEmpty(this);
 		initializeRecipies();
-		initializeListeners();	
+		initializeListeners();
+
+		Player p = this.getServer().getOnlinePlayers().iterator().next();
+		p.getInventory().addItem(StrawberryRecipe.getStrawberryStack());
+
 	}
 
 	private void initializeRecipies() {
 		PickupStickRecipie.initialize(this);
 		BaneOfGustafRecipe.initialize(this);
 		PickPocketRecipe.initialize(this);
+		// GlowingHelmetRecipe.initialize(this);
 	}
-	
-	
+
 	private void initializeListeners() {
 		getServer().getPluginManager().registerEvents(new PickupStickListener(), this);
 		getServer().getPluginManager().registerEvents(new BridgeEggListener(), this);
 		getServer().getPluginManager().registerEvents(new BaneOfGustafListener(), this);
 		getServer().getPluginManager().registerEvents(new PickPocketListener(), this);
+		getServer().getPluginManager().registerEvents(new StrawberryListener(), this);
+		// getServer().getPluginManager().registerEvents(new GlowingHelmetListener(),
+		// this);
 	}
-	
+
 	public static Plugin getPlugin() {
-		return (Plugin)instance;
+		return (Plugin) instance;
 	}
-	
+
 	public static ProtocolManager getProtocolManager() {
 		return manager;
-	}	
-	
+	}
+
 }
- 

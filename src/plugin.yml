@@ -1,7 +1,7 @@
 version: 1.0.0
-api: "1.17"
 name: SMPImprovements
 
 main: com.ngodar.SMPImprovements.Main
 description: Improves an smp world
 api-version: 1.16
+api: "idk"
